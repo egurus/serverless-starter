@@ -20,10 +20,20 @@ resources:
   - ${file(src/resources/apigateway.yml)}
   - ${file(src/resources/iam.yml)}
 
+# Custom variables. These are mostly used to configure plugins.
+custom:
+  splitStacks:
+    perFunction: true
+    perType: false
+
 # Serverless plugins. The "stage-variables" plugin is required to allow us to
 # customise the API Gateway stage that gets created automatically by Serverless.
+# The "split-stacks" plugin is used to generate nested CloudFormation stacks to
+# avoid the hard limit of 200 resources per stack which is possible to hit over
+# time with a relatively large service.
 plugins:
   - serverless-webpack
   - serverless-offline
+  - serverless-plugin-split-stacks
   - serverless-iam-roles-per-function
   - serverless-plugin-stage-variables

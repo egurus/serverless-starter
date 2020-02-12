@@ -29,6 +29,10 @@ project by [Postlight][pl].
   it will be easier to trace requests through the system, leading to more
   convenient debugging.
 
+- Generated CloudFormation stacks are split into nested stacks on a per-function
+  basis via the [split-stacks][ss] plugin, avoiding the 200 resource limit which
+  is possible to reach in larger services.
+
 - A "run warm" utility  which can be used as a higher order function by any
   Lambda function handler to keep the container alive, avoiding the
   [cold start][cs] performance problem.
@@ -68,6 +72,7 @@ can be safely ignored. See [this issue][swi] for more information.
 [b7]: https://babeljs.io/docs/en/next/index.html
 [bpe]: https://babeljs.io/docs/en/next/babel-preset-env.html
 [sirpf]: https://github.com/functionalone/serverless-iam-roles-per-function
+[ss]: https://github.com/dougmoscrop/serverless-plugin-split-stacks
 [cs]: https://serverless.com/blog/keep-your-lambdas-warm/
 [jest]: https://jestjs.io/
 [cc]: https://www.orangejellyfish.com/blog/code-consistency-with-eslint-and-husky/
